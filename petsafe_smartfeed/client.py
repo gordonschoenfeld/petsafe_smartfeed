@@ -179,7 +179,7 @@ class PetSafeClient:
 
         self.id_token = response["AuthenticationResult"]["IdToken"]
         self.access_token = response["AuthenticationResult"]["AccessToken"]
-        self.refresh_token = response["AuthenticationResult"]["RefreshToken"]
+        self.refresh_token = response["AuthenticationResult"].get("RefreshToken", self.refresh_token)
         self.token_expires_time = (
             time.time() + response["AuthenticationResult"]["ExpiresIn"]
         )
